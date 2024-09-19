@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block assets %}
+    <link rel="stylesheet" href="{% static 'blog_app/css/styles.css' %}">
+{% endblock %}
+{% block content %}
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">GadgetGuru - Teknoloji Dünyasından En Güncel Blog Yazıları</h1>
+                <p class="lead mb-0">GadgetGuru'da teknoloji dünyasının nabzını tutan en güncel ve kapsamlı blog yazılarına göz atın. Yenilikçi teknolojiler, akıllı cihazlar, yapay zeka ve daha fazlası hakkında bilgi edinin.</p>
+            </div>
+        </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                    <div class="card-body">
+                        <div class="small text-muted">January 1, 2023</div>
+                        <h2 class="card-title">Featured Post Title</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <a class="btn btn-primary" href="">Read more →</a>
+                    </div>
+                </div>
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    {% for chunk in chunked_items %}
+                        <div class="col-lg-6">
+                            <!-- Blog post-->
+                            {% for item in chunk %}
+                                <div class="card mb-4">
+                                    <a href="#!"><img class="card-img-top" width="700" height="350" src="{{item.image}}" alt="{{item.title}}" /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted"></div>
+                                        <h2 class="card-title h4">{{item.title}}</h2>
+                                        {% if item.description|length >= 100 %}
+                                            <p class="card-text">{{item.description|slice:":100"|safe}}... </p>
+                                        {% else %}
+                                            <p class="card-text">{{item.description|safe}} </p>
+                                        {% endif %}
+                                        <a class="btn btn-primary" href="/{{item.urlSlug}}">Devamını oku →</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+                        </div>
+                        {% endfor %}
+                </div>
+                <!-- Pagination-->
+            
+            </div>
+        </div>
+    </div>
+{% endblock content %}
