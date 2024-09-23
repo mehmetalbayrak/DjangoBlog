@@ -139,11 +139,12 @@ DATE_FORMAT = '%d-%m-%y'
 CSRF_TRUSTED_ORIGINS = [
     'https://gadgetguru.com.tr/',  
     'https://www.gadgetguru.com.tr/',
+    'http://127.0.0.1:8000/',
 ]
 
 SECURE_SSL_REDIRECT = True  
 SESSION_COOKIE_SECURE = True  
-CSRF_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = False  
 SECURE_HSTS_SECONDS = 31536000  
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  
 SECURE_HSTS_PRELOAD = True 
