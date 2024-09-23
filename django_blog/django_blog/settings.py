@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'tr'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -136,7 +136,10 @@ USE_L10N = True
 
 DATE_FORMAT = '%d-%m-%y'
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://gadgetguru.com.tr/',  
+    'https://www.gadgetguru.com.tr/',
+]
 
 SECURE_SSL_REDIRECT = True  
 SESSION_COOKIE_SECURE = True  
