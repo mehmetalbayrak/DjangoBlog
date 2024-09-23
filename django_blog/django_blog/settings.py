@@ -27,13 +27,14 @@ SECRET_KEY = 'django-insecure-2@zc_h90@=@+l!0^q1pcydzqkk3izftq@knb8l!w1gm%617v8n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["185.87.253.81"]
+ALLOWED_HOSTS = ["185.87.253.81","127.0.0.1","gadgetguru.com.tr", "www.gadgetguru.com.tr"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'blog_app.apps.BlogAppConfig',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tr'
 
 TIME_ZONE = 'UTC'
 
@@ -120,6 +122,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog_app/static'),  # Projenizdeki diğer statik dosyaların bulunduğu dizin
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -130,3 +135,12 @@ USE_L10N = True
 
 
 DATE_FORMAT = '%d-%m-%y'
+
+
+
+SECURE_SSL_REDIRECT = True  
+SESSION_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = True  
+SECURE_HSTS_SECONDS = 31536000  
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  
+SECURE_HSTS_PRELOAD = True 
