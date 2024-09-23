@@ -8,7 +8,7 @@
     <meta name="keywords" content="{% block meta_keywords %}{{ blog.keywords }}{% endblock %}">
     <link rel="canonical" href="{{ blog.canonical_url }}">
 
-   
+    <link rel="stylesheet" href="{% static 'blog_app/styles.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'blog_app/favicon.ico' %}" />
     {% block assets %}
 
