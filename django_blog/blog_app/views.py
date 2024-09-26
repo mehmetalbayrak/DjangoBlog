@@ -4,7 +4,7 @@ from . import models
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseNotFound
 
 # Create your views here.
 
@@ -14,13 +14,15 @@ def index(request):
     return render(request,'blog_app/index.html',{'chunked_items' :chunked_items})
 
 def blogdetail(request,url):
-    blog = models.Blog.objects.get(urlSlug = url)
-    blog.keywords = blog.keywords.split(',')
-    blog.canonical_url = request.build_absolute_uri()
+    try:
+        blog = models.Blog.objects.get(urlSlug = url)
+        blog.keywords = blog.keywords.split(',')
+        blog.canonical_url = request.build_absolute_uri()
 
-    blog_dict = {"blog" : blog}
-    return render(request,'blog_app/blog-detail.html',blog_dict)
-
+        blog_dict = {"blog" : blog}
+        return render(request,'blog_app/blog-detail.html',blog_dict)
+    except:
+        return render(request,'404.html',status=404)
 
 
 def chunked_list(lst, chunk_size):
