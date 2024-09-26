@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_blog.middlewares.AdminIPRestrictionMiddleware',
+    #'django_blog.middlewares.AdminIPRestrictionMiddleware',
 ]
 
 # Logging ayarları
@@ -179,7 +179,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
 ]
 
-SECURE_SSL_REDIRECT = True  
+SECURE_SSL_REDIRECT = False  
 SESSION_COOKIE_SECURE = True  
 CSRF_COOKIE_SECURE = True  
 SECURE_HSTS_SECONDS = 31536000  
